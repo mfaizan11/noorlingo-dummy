@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+ * {
+  font-family: var(--font-baloo), var(--font-baloo-ar), cursive !important;
+}
+
+:root {
+  --background: #ffffff;
+  --font-baloo: 'Baloo 2', cursive;
+  --foreground: #171717;
+}
+
+body {
+  font-family: var(--font-baloo);
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+} */
+/* 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+ * {
+  font-family: 'Baloo 2', cursive !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.baloo {
+  font-family: 'Baloo 2', cursive;
+}
+
+.primary{
+  color: #F56A00;
+}
+
+.section-width{
+  max-width: 1800px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+}
+
+/* *{
+  border: 1px solid red;
+} */
+
+@media (min-width: 1024px) {  /* Large screens (lg) */
+  .hero-img {
+    height: 600px;
+  }
+}
+
+@media (min-width: 1280px) {  /* Extra Large screens (xl) */
+  .hero-img {
+    height: 720px;
+  }
+}
+
+@media (min-width: 1636px) {  /* 2XL screens */
+  .hero-img {
+    height: 900px;
+    margin-top: 60px !important;
+  }
+
+  .mt-large{
+    margin-top: 10px !important;  
+  }
+}
+.sectionlayout{
+
+  padding: 0 1.1rem;
+}
+
+

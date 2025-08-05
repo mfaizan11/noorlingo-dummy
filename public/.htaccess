@@ -1,0 +1,9 @@
+# For static-exported Next.js or React SPA
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Don’t rewrite files or directories that actually exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Rewrite everything else to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
