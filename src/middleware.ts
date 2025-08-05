@@ -1,9 +1,13 @@
 import createMiddleware from 'next-intl/middleware';
-import intlConfig from '../next-intl.config'; 
+import intlConfig from '../next-intl.config.js';
 
-export default createMiddleware(intlConfig);
+// Use the config object directly
+export default createMiddleware({
+  locales: intlConfig.locales,
+  defaultLocale: intlConfig.defaultLocale,
+});
 
-// ✅ Now `config` is safe to export
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  // Match only internationalized pathnames
+  matcher: ['/', '/(ar|en)/:path*']
 };
