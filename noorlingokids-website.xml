@@ -558,24 +558,9 @@ export default getRequestConfig(async ({ locale }) => {
 const config = {
   locales: ['en', 'ar'],
   defaultLocale: 'en'
-};
+};  
 
 module.exports = config;
-</file>
-
-<file path="next.config.ts">
-import createNextIntlPlugin from 'next-intl/plugin';
-import type { NextConfig } from 'next';
-
-const withNextIntl = createNextIntlPlugin('./next-intl.config.js');
-
-const nextConfig: NextConfig = {
-  images: {
-    unoptimized: true,
-  },
-};
-
-export default withNextIntl(nextConfig);
 </file>
 
 <file path="postcss.config.mjs">
@@ -3744,6 +3729,22 @@ declare module 'tailwindcss-dir' {
 }
 </file>
 
+<file path="next.config.ts">
+import createNextIntlPlugin from 'next-intl/plugin';
+import type { NextConfig } from 'next';
+
+// Correct path pointing to the i18n request configuration
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
+
+const nextConfig: NextConfig = {
+  images: {
+    unoptimized: true,
+  },
+};
+
+export default withNextIntl(nextConfig);
+</file>
+
 <file path="package.json">
 {
   "name": "d18-noorlingo",
@@ -3794,7 +3795,7 @@ export default createMiddleware({
 });
 
 export const config = {
-  
+  // Match only internationalized pathnames
   matcher: ['/', '/(ar|en)/:path*']
 };
 </file>

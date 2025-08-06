@@ -27,14 +27,14 @@ function Hero() {
           {t('subtitle')}
         </p>
         <button
-          className="mt-8 md:text-[22px] mx-auto border cursor-pointer hover:text-white border-[#FF5A13] text-[#FF5A13] hover:bg-[#FF5A13] bg-transparent transition-all ease-in-out duration-300 py-3 px-5 rounded-full"
+          className="mt-8 mb-6 md:text-[22px] mx-auto border cursor-pointer hover:text-white border-[#FF5A13] text-[#FF5A13] hover:bg-[#FF5A13] bg-transparent transition-all ease-in-out duration-300 py-3 px-5 rounded-full"
           data-aos="zoom-in"
           data-aos-delay="100"
         >
           {t('watchStory')}
         </button>
       </div>
-      <div className="relative w-full h-[200px] md:h-[220px] lg:h-[700px] img md:mt-[-8vh] z-0">
+      <div className="relative w-full h-[200px] md:h-[220px] lg:h-[700px] img md:mt-[-8vh] z-1">
         <Image
           src="/Home/hero.png"
           alt="Hero Illustration"

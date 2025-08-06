@@ -3,16 +3,18 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import Link from 'next/link';
 import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from "next-intl";
+
 import LanguageSwitcher from './LanguageSwitcher'; 
 import LanguageSwitcherMobile from './LanguageSwitcherMobile';
 
 function Navbar() {
   const t = useTranslations("Navbar");
-  const pathname = usePathname();
+  const locale = useLocale(); 
+  const pathname = usePathname(); 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
@@ -25,7 +27,7 @@ function Navbar() {
     <>
       {/* Desktop navbar */}
       <div className="z-50 hidden md:flex flex-row justify-between items-center gap-6 p-4 section-width mx-auto mt">
-        <Link href="/">
+        <Link href={`/${locale}`}>
           <Image
             src="/Logo.webp"
             alt="Logo"
@@ -38,11 +40,17 @@ function Navbar() {
 
         <div className="flex flex-row items-center gap-6 bg-[#F56A002E] p-4 px-8 rounded-full">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const localizedHref = link.href === '/' 
+              ? `/${locale}` 
+              : `/${locale}${link.href}`;
+            
+            // Check for an exact match against the full pathname
+            const isActive = pathname === localizedHref;
+
             return (
               <Link
                 key={link.href}
-                href={link.href}
+                href={localizedHref} // Use the fully constructed path
                 className={clsx(
                   "text-[#7E5005] font-[600] text-[clamp(15px,2vw,18px)] hover:text-[#FF8C00] px-6 p-1 rounded-full transition",
                   isActive && "bg-[#FFD962]"
@@ -71,7 +79,7 @@ function Navbar() {
 
       {/* Mobile navbar */}
       <div className="flex md:hidden flex-row justify-between items-center gap-6 p-4 section-width mx-auto mt-4">
-        <Link href="/">
+        <Link href={`/${locale}`}>
           <Image
             src="/Logo.webp"
             alt="Logo"
@@ -91,8 +99,6 @@ function Navbar() {
             className="cursor-pointer"
           />
           <LanguageSwitcherMobile />
-
-          {/* Mobile hamburger */}
           <button aria-label="Open menu" onClick={() => setMenuOpen(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -127,20 +133,13 @@ function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   className="transition-opacity duration-300 ease-in-out"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-[#F56A00] mt-4"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-[#F56A00] mt-4">
                     <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                     <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
                 </button>
               </div>
-              <Link href="/">
+              <Link href={`/${locale}`}>
                 <Image
                   src="/Logo.webp"
                   alt="Logo"
@@ -152,11 +151,12 @@ function Navbar() {
               </Link>
               <div className="flex flex-col justify-center items-center gap-6 mt-[14vh] w-full">
                 {navLinks.map((link) => {
-                  const isActive = pathname === link.href;
+                  const localizedHref = link.href === '/' ? `/${locale}` : `/${locale}${link.href}`;
+                  const isActive = pathname === localizedHref;
                   return (
                     <Link
                       key={link.href}
-                      href={link.href}
+                      href={localizedHref}
                       className={clsx(
                         "text-center text-[#7E5005] font-[600] text-lg hover:text-[#FF8C00] px-8 py-3 rounded-full transition ",
                         isActive && "bg-[#FFD962]"
