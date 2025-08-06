@@ -50,7 +50,7 @@ function Navbar() {
             return (
               <Link
                 key={link.href}
-                href={localizedHref} // Use the fully constructed path
+                href={localizedHref}
                 className={clsx(
                   "text-[#7E5005] font-[600] text-[clamp(15px,2vw,18px)] hover:text-[#FF8C00] px-6 p-1 rounded-full transition",
                   isActive && "bg-[#FFD962]"

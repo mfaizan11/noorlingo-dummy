@@ -125,7 +125,7 @@ const PolicyPage = () => {
         </p>
         <p>
           {t("phoneLabel")}{" "}
-          <a href="tel:+971502389602" className="text-blue-600 no-underline">
+          <a href="tel:+971502389602" className="text-blue-600 no-underline" dir="ltr" >
             +971 50 238 9602
           </a>
         </p>
