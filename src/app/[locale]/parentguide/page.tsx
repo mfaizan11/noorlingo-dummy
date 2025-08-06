@@ -120,7 +120,7 @@ const PolicyPage = () => {
             href="mailto:support@noorlingokids.com"
             className="text-blue-600 no-underline"
           >
-            support@noorlingokids.com
+            support@noorlingokids.com  
           </a>
         </p>
         <p>
